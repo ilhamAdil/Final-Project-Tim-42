@@ -23,7 +23,7 @@ class QuestionsController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
