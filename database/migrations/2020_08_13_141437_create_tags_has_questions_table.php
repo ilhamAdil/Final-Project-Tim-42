@@ -17,8 +17,8 @@ class CreateTagsHasQuestionsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('questions_id');
             $table->unsignedBigInteger('tag_id');
-            $table->foreign('questions_id')->references('id')->on('questions');
-            $table->foreign('tag_id')->references('id')->on('tags');
+            $table->foreign('questions_id')->references('id')->on('questions')->onDelete('cascade');;
+            $table->foreign('tag_id')->references('id')->on('tags')->onDelete('cascade');;
             $table->timestamps();
         });
     }
