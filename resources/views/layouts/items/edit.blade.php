@@ -21,7 +21,7 @@
                 </div>
                 <div class="form-group">
                     <label for="body">Isi Pertanyaan</label>
-                    <input type="text" class="form-control" name="body" id="body" value="{{ old('body', $question->body )}}" placeholder="Masukan Isi Pertanyaan">
+                    <textarea name="body" id="body" class="form-control" value="{{ old('body', '' )}} cols="30" rows="10" placeholder="Masukan Isi Pertanyaan"></textarea>
                     @error('body')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
@@ -41,4 +41,14 @@
         </form>
     </div>
 </div>
+<script src="{{asset('ckeditor/ckeditor.js')}}"></script>
+<script>
+  var body = document.getElementById("body");
+    CKEDITOR.replace(body,{
+    language:'en-gb'
+  });
+  CKEDITOR.config.allowedContent = true;
+  CKEDITOR.config.removePlugins = 'elementspath';
+  CKEDITOR.config.autoParagraph = false;
+</script>
 @endsection
