@@ -15,9 +15,9 @@ class CreateAnswersTable extends Migration
     {
         Schema::create('answers', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('isi');
-            $table->integer('point_like');
-            $table->integer('point_dislike');
+            $table->string('body');
+            $table->integer('point_like')->nullable();
+            $table->integer('point_dislike')->nullable();
             $table->timestamps();
         });
     }

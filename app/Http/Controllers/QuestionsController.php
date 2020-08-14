@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Question;
+use Auth;
+use App\Tag;
 
 class QuestionsController extends Controller
 {
@@ -13,7 +16,8 @@ class QuestionsController extends Controller
      */
     public function index()
     {
-        //
+        $question = Question::all();
+        return view('layouts.items.index', compact('question'));
     }
 
     /**
@@ -23,7 +27,7 @@ class QuestionsController extends Controller
      */
     public function create()
     {
-        
+        return view('layouts.items.create');
     }
 
     /**
@@ -34,7 +38,20 @@ class QuestionsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+            'body' => 'required',
+            'tags' => 'required'
+        ]);
+
+        $question = Question::create([
+            'title' => $request['title'],
+            'body' => $request['body']
+        ]);
+
+        $question->save();
+
+        return redirect('/questions')->with('success', 'Pertanyaan berhasil dibuat!');
     }
 
     /**
@@ -45,7 +62,9 @@ class QuestionsController extends Controller
      */
     public function show($id)
     {
-        //
+        $question = Question::find($id);
+
+        return view('layouts.items.show', compact('question'));
     }
 
     /**
@@ -56,7 +75,8 @@ class QuestionsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $question = Question::find($id); 
+        return view('layouts.items.edit', compact('question'));
     }
 
     /**
@@ -68,7 +88,18 @@ class QuestionsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+            'body' => 'required',
+            'tags' => 'required'
+        ]);
+
+        $update = Question::where('id', $id)->update([
+            'title' => $request['title'],
+            'body' => $request['body']
+        ]);
+
+        return redirect('/questions')->with('success', 'Berhasil Memperbarui!');
     }
 
     /**
@@ -79,6 +110,7 @@ class QuestionsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Question::destroy($id);
+        return redirect('/questions')->with('success', 'Berhasil Menghapus!');
     }
 }

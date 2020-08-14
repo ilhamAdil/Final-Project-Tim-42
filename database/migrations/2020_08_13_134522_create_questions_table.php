@@ -16,9 +16,9 @@ class CreateQuestionsTable extends Migration
         Schema::create('questions', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('title');
-            $table->string('isi');
-            $table->integer('point_like');
-            $table->integer('point_dislike');
+            $table->string('body');
+            $table->integer('point_like')->nullable();
+            $table->integer('point_dislike')->nullable();
             $table->timestamps();
         });
     }
