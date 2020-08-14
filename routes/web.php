@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/questions'); //sementara sy alihkan dulu ke halaman index (auth)
 });
 
 Auth::routes();
