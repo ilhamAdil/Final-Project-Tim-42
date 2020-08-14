@@ -20,7 +20,8 @@ class QuestionsController extends Controller
      */
     public function index()
     {
-        $question = Question::all();
+        $user = Auth::user();
+        $question = $user->questions;
         return view('layouts.items.index', compact('question'));
     }
 
@@ -47,10 +48,11 @@ class QuestionsController extends Controller
             'body' => 'required',
             'tags' => 'required'
         ]);
-
+        
         $question = Question::create([
             'title' => $request['title'],
-            'body' => $request['body']
+            'body' => $request['body'],
+            'user_id' => Auth::id()
         ]);
 
         $question->save();
