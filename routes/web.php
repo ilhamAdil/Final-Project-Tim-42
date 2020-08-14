@@ -12,11 +12,12 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/allQuestions');
 });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('questions', 'QuestionsController');
+Route::get('/allQuestions', 'QuestionsController@indexAll')->name('indexAll');
 Route::resource('answers', 'AnswersController');

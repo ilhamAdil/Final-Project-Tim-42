@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.app')
 
 @section('content')
 <div class="card">
@@ -11,10 +11,10 @@
     </div>
     <div class="card-body">
         <h5 class="card-title font-weight-bold"> {{$question->title}} </h5>
-        <p class="card-text"> {{$question->body}} </p><br>
+        <p class="card-text"> <?php echo $question->body ?> </p><br>
         <div class="dropdown-divider"></div>
         <div class="mt-4">
-            Author :
+            Penanya :
             <button class="btn btn-success btn-sm mr-3">{{ $question->author->name }}</button>
             Tags : 
             @forelse($question->tags as $tag)
@@ -22,6 +22,11 @@
             @empty
                 No Tags
             @endforelse
+
+            <div class="float-right">
+                <a href="#" class="btn btn-outline-primary btn-sm m-1"><i class="fas fa-thumbs-up"></i></a>
+                <a href="#" class="btn btn-outline-danger btn-sm m-1"><i class="fas fa-thumbs-down"></i></a>
+            </div>
         </div>
     </div>
 </div>
