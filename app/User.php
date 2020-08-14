@@ -37,7 +37,6 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    // ambil data questions
     public function questions() {
         return $this->hasMany('App\Question');
     }

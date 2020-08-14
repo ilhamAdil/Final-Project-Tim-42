@@ -21,14 +21,16 @@
                 </div>
                 <div class="form-group">
                     <label for="body">Isi Pertanyaan</label>
-                    <textarea name="body" id="body" class="form-control" value="{{ old('body', '' )}} cols="30" rows="10" placeholder="Masukan Isi Pertanyaan"></textarea>
+                    <textarea name="body" id="body" class="form-control" cols="30" rows="10" placeholder="Masukan Isi Pertanyaan">
+                        {{ old('body', $question->body )}}
+                    </textarea>
                     @error('body')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                 </div>
                 <div class="form-group">
                     <label for="tags">Tags</label>
-                    <input type="text" class="form-control" name="tags" value="{{old('tags', '')}}" placeholder="Pisahkan dengan koma, contoh : php,laravel,javascript">
+                    <input type="text" class="form-control" name="tags" value="{{old('tags', $tags_arr)}}" placeholder="Pisahkan dengan koma, contoh : php,laravel,javascript">
                     @error('tags')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
@@ -36,19 +38,19 @@
             </div>
             <!-- /.card-body -->
             <div class="card-footer">
-                <button type="submit" class="btn btn-primary">Perbarui Pertanyaan</button>
+                <button type="submit" class="btn btn-success">Perbarui Pertanyaan</button>
             </div>
         </form>
     </div>
 </div>
 <script src="{{asset('ckeditor/ckeditor.js')}}"></script>
 <script>
-  var body = document.getElementById("body");
-    CKEDITOR.replace(body,{
-    language:'en-gb'
-  });
-  CKEDITOR.config.allowedContent = true;
-  CKEDITOR.config.removePlugins = 'elementspath';
-  CKEDITOR.config.autoParagraph = false;
+    var body = document.getElementById("body");
+        CKEDITOR.replace(body,{
+        language:'en-gb'
+    });
+    CKEDITOR.config.allowedContent = true;
+    CKEDITOR.config.removePlugins = 'elementspath';
+    CKEDITOR.config.autoParagraph = false;
 </script>
 @endsection
