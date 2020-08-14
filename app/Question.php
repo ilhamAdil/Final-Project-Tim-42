@@ -11,4 +11,8 @@ class Question extends Model
     public function author() {
         return $this->belongsTo('App\User');
     }
+
+    public function tags() {
+        return $this->belongsToMany('App\Tag', 'tags_has_questions', 'questions_id', 'tag_id');
+    }
 }

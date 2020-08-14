@@ -48,14 +48,27 @@ class QuestionsController extends Controller
             'body' => 'required',
             'tags' => 'required'
         ]);
-        
-        $question = Question::create([
+
+        $tags_arr = explode(',', $request['tags']);
+
+        $tag_ids = [];
+        foreach($tags_arr as $tag_name){
+            $tag = Tag::where('tag_name', $tag_name)->first();
+            if($tag){
+                $tag_ids[] = $tag->id;
+            }else {
+                $new_tag = Tag::create(['tag_name' => $tag_name]);
+                $tag_ids[] = $new_tag->id;
+            }
+        }
+
+        $user = Auth::user();
+        $question = $user->questions()->create([
             'title' => $request['title'],
-            'body' => $request['body'],
-            'user_id' => Auth::id()
+            'body' => $request['body']
         ]);
 
-        $question->save();
+        $question->tags()->sync($tag_ids);
 
         return redirect('/questions')->with('success', 'Pertanyaan berhasil dibuat!');
     }
