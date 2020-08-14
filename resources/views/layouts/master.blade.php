@@ -397,6 +397,7 @@
 
   <!-- script tambahan sweet alert, bukan dari bawaan sb-admin-2 -->
   @stack('scripts')
+  @include('sweetalert::alert')
 
   <script src="{{asset('sbadmin2/js/swal.min.js')}}"></script>
 
