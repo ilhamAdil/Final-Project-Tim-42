@@ -11,7 +11,7 @@
     </div>
     <div class="card-body">
         <h5 class="card-title font-weight-bold"> {{$question->title}} </h5>
-        <p class="card-text"> {{$question->body}} </p><br>
+        <p class="card-text"> <?php echo $question->body ?> </p><br>
         <div class="dropdown-divider"></div>
         <div class="mt-4">
             Author :

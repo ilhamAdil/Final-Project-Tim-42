@@ -55,13 +55,8 @@ class QuestionsController extends Controller
 
         $tag_ids = [];
         foreach($tags_arr as $tag_name){
-            $tag = Tag::where('tag_name', $tag_name)->first();
-            if($tag){
-                $tag_ids[] = $tag->id;
-            }else {
-                $new_tag = Tag::create(['tag_name' => $tag_name]);
-                $tag_ids[] = $new_tag->id;
-            }
+            $tag = Tag::firstOrCreate(['tag_name' => $tag_name]);
+            $tag_ids[] = $tag->id;
         }
 
         $user = Auth::user();
@@ -74,7 +69,7 @@ class QuestionsController extends Controller
         $question->tags()->sync($tag_ids);
         
         Alert::success('Berhasil', 'Berhasil Menambahkan Pertanyaan');
-        return redirect('/questions')->with('success', 'Pertanyaan berhasil dibuat!');
+        return redirect('/questions');
     }
 
     /**
@@ -128,19 +123,17 @@ class QuestionsController extends Controller
 
         $tag_ids = [];
         foreach($tags_arr as $tag_name){
-            $tag = Tag::where('tag_name', $tag_name)->first();
-            if($tag){
-                $tag_ids[] = $tag->id;
-            }else {
-                $new_tag = Tag::update(['tag_name' => $tag_name]);
-                $tag_ids[] = $new_tag->id;
-            }
+            $tag = Tag::firstOrCreate(['tag_name' => $tag_name]);
+            $tag_ids[] = $tag->id;
         }
 
         $update = Question::where('id', $id)->update([
             'title' => $request['title'],
             'body' => $request['body']
         ]);
+
+        $question = Question::find($id);
+        $question->tags()->sync($tag_ids);
 
         return redirect('/questions')->with('success', 'Berhasil Memperbarui!');
     }

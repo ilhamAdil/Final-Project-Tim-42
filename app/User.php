@@ -40,4 +40,8 @@ class User extends Authenticatable
     public function questions() {
         return $this->hasMany('App\Question');
     }
+
+    public function tags() {
+        return $this->belongsToMany('App\Tag', 'tags_has_questions', 'questions_id', 'tag_id');
+    }
 }
