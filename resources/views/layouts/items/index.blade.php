@@ -17,7 +17,7 @@
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th style="width: 10px">#</th>
+                        <th style="width: 10px">NO</th>
                         <th>JUDUL</th>
                         <th>ISI</th>
                         <th style="width: 40px">AKSI</th>

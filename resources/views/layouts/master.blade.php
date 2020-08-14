@@ -244,13 +244,8 @@
                 <span class="badge badge-danger badge-counter">7</span>
               </a> -->
               <!-- Dropdown - Messages -->
-<<<<<<< HEAD
-              <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown">
-                <h6 class="dropdown-header border-success bg-success">
-=======
               <!-- <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown">
                 <h6 class="dropdown-header bg-success">
->>>>>>> 06460923bc4a1a67926414be3973f181071d52d3
                   Message Center
                 </h6>
                 <a class="dropdown-item d-flex align-items-center" href="#">
