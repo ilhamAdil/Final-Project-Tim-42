@@ -63,9 +63,11 @@ class QuestionsController extends Controller
         }
 
         $user = Auth::user();
+        $isi=strip_tags($request['body']);
         $question = $user->questions()->create([
+            
             'title' => $request['title'],
-            'body' => $request['body']
+            'body' => $isi
         ]);
 
         $question->tags()->sync($tag_ids);
@@ -112,10 +114,11 @@ class QuestionsController extends Controller
             'body' => 'required',
             'tags' => 'required'
         ]);
-
+        
+        $isi=strip_tags($request['body']);
         $update = Question::where('id', $id)->update([
             'title' => $request['title'],
-            'body' => $request['body']
+            'body' => $isi
         ]);
 
         return redirect('/questions')->with('success', 'Berhasil Memperbarui!');
