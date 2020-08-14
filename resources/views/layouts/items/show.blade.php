@@ -7,7 +7,7 @@
     </div>
     <div class="card-body">
         <h5 class="card-title"> {{$question->title}} </h5>
-        <p class="card-text"> {{$question->title}} </p>
+        <p class="card-text"> {{$question->body}} </p>
     </div>
 </div>
 @endsection
