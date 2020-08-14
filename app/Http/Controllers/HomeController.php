@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Question;
+use App\User;
+use Auth;
+use App\Tag;
 
 class HomeController extends Controller
 {
@@ -23,6 +27,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $user = Auth::user()->name;
+        return redirect('/questions')->with('success', "Selamat Datang! " . $user);
     }
 }

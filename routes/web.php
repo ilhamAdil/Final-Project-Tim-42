@@ -12,7 +12,11 @@
 */
 
 Route::get('/', function () {
+<<<<<<< HEAD
     return view('welcome'); //sementara sy alihkan dulu ke halaman index (auth)
+=======
+    return view('welcome');
+>>>>>>> 06460923bc4a1a67926414be3973f181071d52d3
 });
 
 Auth::routes();
