@@ -5,7 +5,7 @@
     <div class="card">
         <div class="card-header">
             <h3 class="card-title font-weight-bold float-left mt-3">DAFTAR PERTANYAAN</h3>
-            <a href="/questions/create" class="btn btn-primary float-right card-title mt-3">Buat Pertanyaan Baru</a>
+            <a href="/questions/create" class="btn btn-success float-right card-title mt-3">Buat Pertanyaan Baru</a>
         </div>
         <!-- /.card-header -->
         <div class="card-body">

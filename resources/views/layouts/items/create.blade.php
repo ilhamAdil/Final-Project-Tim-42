@@ -35,7 +35,7 @@
             </div>
             <!-- /.card-body -->
             <div class="card-footer">
-                <button type="submit" class="btn btn-primary">Ajukan Pertanyaan</button>
+                <button type="submit" class="btn btn-success">Ajukan Pertanyaan</button>
             </div>
         </form>
     </div>
