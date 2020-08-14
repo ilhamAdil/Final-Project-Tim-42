@@ -13,8 +13,15 @@ class QuestionsController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth')->except(['show']);
+        $this->middleware('auth')->except(['show', 'indexAll']);
     }
+
+    public function indexAll()
+    {
+        $question = Question::all();
+        return view('layouts.items.allQuestions', compact('question'));
+    }
+
     /**
      * Display a listing of the resource.
      *

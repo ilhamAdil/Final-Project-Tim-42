@@ -1,10 +1,10 @@
-@extends('layouts.master')
+@extends('layouts.app')
 
 @section('content')
 <div>
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title font-weight-bold float-left mt-3">DAFTAR PERTANYAAN</h3>
+            <h3 class="card-title font-weight-bold float-left mt-3">SEMUA PERTANYAAN</h3>
             <a href="/questions/create" class="btn btn-success float-right card-title mt-3">Buat Pertanyaan Baru</a>
         </div>
         <!-- /.card-header -->
@@ -18,8 +18,8 @@
                 <thead>
                     <tr>
                         <th style="width: 10px">#</th>
-                        <th>JUDUL</th>
-                        <th>ISI</th>
+                        <th>Penanya</th>
+                        <th>Pertanyaan</th>
                         <th style="width: 40px">AKSI</th>
                     </tr>
                 </thead>
@@ -27,16 +27,12 @@
                     @forelse($question as $key => $post)
                         <tr>
                             <td> {{ $key + 1 }} </td>
+                            <td> {{ $post->author->name }} </td>
                             <td> {{ $post->title }} </td>
-                            <td> {{ strip_tags($post->body) }} </td>
                             <td style="display:flex">
                                 <a href="/questions/{{$post->id}}" class="btn btn btn-success btn-sm m-1">Show</a>
-                                <a href="/questions/{{$post->id}}/edit" class="btn btn-secondary btn-sm m-1">Edit</a>
-                                <form action="/questions/{{$post->id}}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                    <input type="submit" class="btn btn-danger btn-sm m-1" value="Delete">
-                                </form>
+                                <a href="#" class="btn btn-outline-primary btn-sm m-1"><i class="fas fa-thumbs-up"></i></a>
+                                <a href="#" class="btn btn-outline-danger btn-sm m-1"><i class="fas fa-thumbs-down"></i></a>
                             </td>
                         </tr>
                     @empty
