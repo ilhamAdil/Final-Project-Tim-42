@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Question;
 use Auth;
 use App\Tag;
+use RealRashid\SweetAlert\Facades\Alert;
+
 
 class QuestionsController extends Controller
 {
@@ -70,7 +72,8 @@ class QuestionsController extends Controller
         ]);
 
         $question->tags()->sync($tag_ids);
-
+        
+        Alert::success('Berhasil', 'Berhasil Menambahkan Pertanyaan');
         return redirect('/questions')->with('success', 'Pertanyaan berhasil dibuat!');
     }
 
