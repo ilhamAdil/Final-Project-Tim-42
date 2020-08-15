@@ -48,9 +48,9 @@
             </table> -->
         
         @forelse($question as $key => $post)
-            <div class="card mb-3">
-              <div class="card-header">
-                <h5 class="card-title">Pertanyaan {{ $key+1 }}</h5>           
+            <div class="card mb-3 border-secondary">
+              <div class="card-header bg-secondary">
+                <h5 class="card-title text-white pt-2">Pertanyaan {{ $key+1 }}</h5>           
                   
               </div>
               <!-- /.card-header -->
