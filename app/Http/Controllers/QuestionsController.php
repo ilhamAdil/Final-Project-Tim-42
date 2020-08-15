@@ -32,7 +32,7 @@ class QuestionsController extends Controller
     // ini index pertanyaan untuk user yg sudah masuk
     public function index()
     {
-        
+
         $user = Auth::user();
         $question = $user->questions;
         return view('layouts.items.index', compact('question'));

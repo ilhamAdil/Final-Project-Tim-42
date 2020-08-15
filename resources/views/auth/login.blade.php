@@ -57,11 +57,12 @@
                                     Masuk
                                 </button>
 
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        Lupa Password?
+                                <!-- @if (Route::has('password.request')) -->
+                                    <!-- <a class="btn btn-link" href="{{ route('password.request') }}"> -->
+                                    <a class="btn btn-link" href="{{ route('register') }}">
+                                        Belum punya akun? Daftar di sini
                                     </a>
-                                @endif
+                                <!-- @endif -->
                             </div>
                         </div>
                     </form>
