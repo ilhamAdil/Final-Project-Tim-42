@@ -17,7 +17,7 @@
             <!-- <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th style="width: 10px">NO</th>
+                        <th style="width: 10px">#</th>
                         <th>JUDUL</th>
                         <th>ISI</th>
                         <th style="width: 40px">AKSI</th>
@@ -28,7 +28,7 @@
                         <tr>
                             <td> {{ $key + 1 }} </td>
                             <td> {{ $post->title }} </td>
-                            <td> {{ $post->body }} </td>
+                            <td> {{ strip_tags($post->body) }} </td>
                             <td style="display:flex">
                                 <a href="/questions/{{$post->id}}" class="btn btn btn-success btn-sm m-1">Show</a>
                                 <a href="/questions/{{$post->id}}/edit" class="btn btn-secondary btn-sm m-1">Edit</a>

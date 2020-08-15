@@ -21,7 +21,9 @@
                 <div class="form-group">
                     <label for="body">Isi Pertanyaan</label>
                     <!-- <input type="text" class="form-control" name="body" id="body" value="{{ old('body', '' )}}" placeholder="Masukan Isi Pertanyaan"> -->
-                    <textarea name="body" id="body" class="form-control" value="{{ old('body', '' )}} cols="30" rows="10" placeholder="Masukan Isi Pertanyaan"></textarea>
+                    <textarea name="body" id="body" class="form-control" cols="30" rows="10" placeholder="Masukan Isi Pertanyaan">
+                        {{ old('body', '' )}}
+                    </textarea>
                     @error('body')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror

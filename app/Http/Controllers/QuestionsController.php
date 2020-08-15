@@ -22,6 +22,7 @@ class QuestionsController extends Controller
      */
     public function index()
     {
+        
         $user = Auth::user();
         $question = $user->questions;
         return view('layouts.items.index', compact('question'));
