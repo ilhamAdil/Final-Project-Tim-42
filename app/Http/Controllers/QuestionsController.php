@@ -35,6 +35,7 @@ class QuestionsController extends Controller
     public function create()
     {
         return view('layouts.items.create');
+        
     }
 
     /**
@@ -74,7 +75,7 @@ class QuestionsController extends Controller
 
         $question->tags()->sync($tag_ids);
         
-        Alert::success('Berhasil', 'Berhasil Menambahkan Pertanyaan');
+        Alert::success('Created', 'Berhasil Menambahkan Pertanyaan');
         return redirect('/questions')->with('success', 'Pertanyaan berhasil dibuat!');
     }
 

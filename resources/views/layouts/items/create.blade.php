@@ -41,6 +41,7 @@
         </form>
     </div>
 </div>
+@include('sweetalert::alert')
 <script src="{{asset('ckeditor/ckeditor.js')}}"></script>
 <script>
   var body = document.getElementById("body");
