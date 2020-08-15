@@ -16,10 +16,8 @@ class QuestionsController extends Controller
         $this->middleware('auth')->except(['show', 'indexAll']);
     }
 
-    // bedain, ini index all
     public function indexAll()
     {
-        
         $question = Question::all();
         return view('layouts.items.indexAll', compact('question'));
     }
@@ -29,10 +27,8 @@ class QuestionsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    // ini index pertanyaan untuk user yg sudah masuk
     public function index()
     {
-
         $user = Auth::user();
         $question = $user->questions;
         return view('layouts.items.index', compact('question'));
@@ -46,7 +42,6 @@ class QuestionsController extends Controller
     public function create()
     {
         return view('layouts.items.create');
-        
     }
 
     /**
@@ -67,27 +62,21 @@ class QuestionsController extends Controller
 
         $tag_ids = [];
         foreach($tags_arr as $tag_name){
-            $tag = Tag::where('tag_name', $tag_name)->first();
-            if($tag){
-                $tag_ids[] = $tag->id;
-            }else {
-                $new_tag = Tag::create(['tag_name' => $tag_name]);
-                $tag_ids[] = $new_tag->id;
-            }
+            $tag = Tag::firstOrCreate(['tag_name' => $tag_name]);
+            $tag_ids[] = $tag->id;
         }
 
         $user = Auth::user();
-        $isi=strip_tags($request['body']);
         $question = $user->questions()->create([
             
             'title' => $request['title'],
-            'body' => $isi
+            'body' => $request['body']
         ]);
 
         $question->tags()->sync($tag_ids);
         
-        Alert::success('Created', 'Berhasil Menambahkan Pertanyaan');
-        return redirect('/questions')->with('success', 'Pertanyaan berhasil dibuat!');
+        Alert::success('Berhasil', 'Berhasil Menambahkan Pertanyaan');
+        return redirect('/questions');
     }
 
     /**
@@ -111,8 +100,15 @@ class QuestionsController extends Controller
      */
     public function edit($id)
     {
-        $question = Question::find($id); 
-        return view('layouts.items.edit', compact('question'));
+        $question = Question::find($id);
+        $tags = $question->tags()->where('questions_id', $id)->get();
+        $tag_ids = [];
+        foreach($tags as $tag){
+            $tag_ids[] = $tag->tag_name;
+        }
+        $tags_arr = implode(",", $tag_ids);
+        
+        return view('layouts.items.edit', compact('question', 'tags_arr'));
     }
 
     /**
@@ -130,11 +126,21 @@ class QuestionsController extends Controller
             'tags' => 'required'
         ]);
         
-        $isi=strip_tags($request['body']);
+        $tags_arr = explode(',', $request['tags']);
+
+        $tag_ids = [];
+        foreach($tags_arr as $tag_name){
+            $tag = Tag::firstOrCreate(['tag_name' => $tag_name]);
+            $tag_ids[] = $tag->id;
+        }
+
         $update = Question::where('id', $id)->update([
             'title' => $request['title'],
-            'body' => $isi
+            'body' => $request['body']
         ]);
+
+        $question = Question::find($id);
+        $question->tags()->sync($tag_ids);
 
         return redirect('/questions')->with('success', 'Berhasil Memperbarui!');
     }

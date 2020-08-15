@@ -61,7 +61,7 @@
                       <strong>{{ $post->title }}</strong>
                     </h1>
                     <h5>
-                        {{ $post->body }}
+                        {{ strip_tags($post->body) }}
                     </h5>                   
                     <!-- /.progress-group -->
                   </div>
